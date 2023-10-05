@@ -9,7 +9,8 @@ class ngram_score:
         self.ngrams = {}
         with open(ngramfile) as f:
             for line in f.readlines():
-                key, count = line.split(sep) 
+                key, count = line.split(sep)
+                key = key.lower().strip()
                 self.ngrams[key] = int(count)
 
         # print(self.ngrams)
@@ -40,8 +41,7 @@ class ngram_score:
         text = [text]
 
         score = 0
-        score = 0
-        
+
         for ngram, freq in self.ngrams.items():
             if ngram in text:
                 score += freq
@@ -58,7 +58,6 @@ class ngram_score:
         # score = sum([text.count(ngram) * self.ngrams[ngram] for ngram in self.ngramsL])
 
         self.avrgTime()
-
         return score
        
 def crack(text):
